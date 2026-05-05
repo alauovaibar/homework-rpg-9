@@ -1,8 +1,6 @@
 package com.narxoz.rpg.artifact;
 
-/**
- * A restorative or alchemical potion stored in the vault.
- */
+
 public class Potion extends Artifact {
 
     private final int healing;
@@ -18,6 +16,6 @@ public class Potion extends Artifact {
 
     @Override
     public void accept(ArtifactVisitor visitor) {
-        // TODO: call visitor.visit(this) for double dispatch.
+        visitor.visit(this);
     }
 }
