@@ -1,8 +1,6 @@
 package com.narxoz.rpg.artifact;
 
-/**
- * A magical scroll containing a single spell or rune sequence.
- */
+
 public class Scroll extends Artifact {
 
     private final String spellName;
