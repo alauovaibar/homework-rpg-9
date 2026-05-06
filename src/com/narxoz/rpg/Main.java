@@ -1,20 +1,32 @@
 package com.narxoz.rpg;
 
-/**
- * Entry point for Homework 9 — Chronomancer's Vault: Visitor + Memento.
- *
- * The scaffold prints the banner only; students fill in the vault demo.
- */
-public class Main {
+import com.narxoz.rpg.artifact.*;
+import com.narxoz.rpg.combatant.Hero;
+import com.narxoz.rpg.vault.ChronomancerEngine;
+import com.narxoz.rpg.vault.VaultRunResult;
+import java.util.List;
 
+public class Main {
     public static void main(String[] args) {
         System.out.println("=== Homework 9 Demo: Visitor + Memento ===");
 
-        // 1. Create at least 2 heroes with different starting states.
-        // 2. Build an artifact inventory and exercise the visitor interface.
-        // 3. Capture a hero snapshot through the memento workflow.
-        // 4. Rewind the hero after a vault trap changes state.
-        // 5. Run the ChronomancerEngine demo sequence.
-        // 6. Print a final VaultRunResult summary.
+        // 1. Создаем героев
+        Hero arthur = new Hero("Arthur", 100, 20, 10);
+        arthur.addGold(100);
+        arthur.getInventory().addArtifact(new Weapon("Excalibur", 500, 10, 50));
+        arthur.getInventory().addArtifact(new Armor("Plate", 200, 30, 20));
+
+        Hero merlin = new Hero("Merlin", 60, 15, 5);
+        merlin.restoreMana(100);
+        merlin.getInventory().addArtifact(new Scroll("Fireball", 100, 1, "Inferno"));
+
+        // 2. Запускаем движок
+        ChronomancerEngine engine = new ChronomancerEngine();
+        VaultRunResult result = engine.runVault(List.of(arthur, merlin));
+
+        // 3. Печатаем итог
+        System.out.println(result);
+        System.out.println("Final State Arthur: " + arthur);
+        System.out.println("Final State Merlin: " + merlin);
     }
 }
