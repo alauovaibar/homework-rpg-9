@@ -11,22 +11,14 @@ public class Inventory {
 
     private final List<Artifact> artifacts;
 
+    // Конструктор для создания пустого инвентаря
     public Inventory() {
         this.artifacts = new ArrayList<>();
     }
 
+    // Конструктор для создания инвентаря на основе существующего списка (используется в copy)
     public Inventory(List<Artifact> artifacts) {
         this.artifacts = artifacts == null ? new ArrayList<>() : new ArrayList<>(artifacts);
-    }
-
-    public void addArtifact(Artifact artifact) {
-        if (artifact != null) {
-            artifacts.add(artifact);
-        }
-    }
-
-    public List<Artifact> getArtifacts() {
-        return Collections.unmodifiableList(artifacts);
     }
 
     public int size() {
@@ -50,6 +42,18 @@ public class Inventory {
      * @return a new inventory containing the same artifact references
      */
     public Inventory copy() {
-        return new Inventory(artifacts);
+        // Оставляем только один корректный возврат
+        return new Inventory(new ArrayList<>(this.artifacts));
+    }
+
+    // Не забудьте добавить метод для добавления артефактов, иначе инвентарь будет всегда пуст
+    public void addArtifact(Artifact artifact) {
+        if (artifact != null) {
+            artifacts.add(artifact);
+        }
+    }
+
+    public List<Artifact> getArtifacts() {
+        return Collections.unmodifiableList(artifacts);
     }
 }
